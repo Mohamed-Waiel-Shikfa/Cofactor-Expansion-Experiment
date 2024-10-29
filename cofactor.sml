@@ -6,6 +6,7 @@
 Control.Print.printLength := 100000000;
 Control.Print.printDepth := 100000000;
 
+structure D = Date
 (* Global mutable references for counting determinants of various sizes *)
 val count15 = ref 0
 val count14 = ref 0
@@ -21,6 +22,7 @@ fun reset () =
 fun printCounts () =
   let
     val _ = print ("\n")
+    val _ = print (D.fmt "%a %b %d %Y: %Hh %Mmin %Ssec" (D.fromTimeLocal  (Time.now ())) ^ " | ")
     val _ = print ("15x15: " ^ Int.toString (!count15 - 1) ^ " ")
     val _ = print ("14x14: " ^ Int.toString (!count14 - 1) ^ " ")
     val _ = print ("13x13: " ^ Int.toString (!count13 - 1) ^ " ")
